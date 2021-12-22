@@ -6,6 +6,7 @@ const gridContainer = document.querySelector('.gridContainer')
 let currentMode = 'black'
 let pixel = ''
 let size = 16
+let randomColor = ''
 
 function setGrid (size) {
     for (let i = 0; i < size ** 2; i++) {
@@ -19,21 +20,18 @@ function setGrid (size) {
     let pixels = document.querySelectorAll('.pixel')
     pixels.forEach(pxl => {
         pxl.addEventListener('mouseover', (e) => {
-            // switch(currentMode) {
-            //     case 'black':
-            //         e.target.style.backgroundColor = 'black'
-            //         break;
-            //     case 'random':
-            //         let red = Math.floor(Math.random() * 256);
-            //         let green = Math.floor(Math.random() * 256);
-            //         let blue = Math.floor(Math.random() * 256);
-            //         e.target.style.backgroundColor = `${red} + "," + ${green} + "," + ${blue}`
-            //         break;
-            //     case 'eraser':
-            //         e.target.style.backgroundColor = 'white'
-            //         break;
-            // }
-            e.target.style.backgroundColor = 'black'
+            switch(currentMode) {
+                case 'black':
+                    e.target.style.backgroundColor = 'black'
+                    break;
+                case 'random':
+                    randomColor = '#' + Math.floor(Math.random()*16777215).toString(16).toUpperCase();
+                    e.target.style.backgroundColor = randomColor;
+                    break;
+                case 'eraser':
+                    e.target.style.backgroundColor = 'white'
+                    break;
+            }
         })
     })
 }
@@ -43,24 +41,33 @@ function resetGrid(size) {
     setGrid(size)
 }
 
-// const blackBtn = document.getElementById('black')
-// blackBtn.addEventListener('click', function () {
-//     currentMode = 'black'
-// });
+const blackBtn = document.getElementById('black')
+blackBtn.addEventListener('click', function () {
+    currentMode = 'black'
+});
 
-// const randomBtn = document.getElementById('random')
-// randomBtn.addEventListener('click', function () {
-//     currentMode = 'random'
-// });
+const randomBtn = document.getElementById('random')
+randomBtn.addEventListener('click', function () {
+    currentMode = 'random'
+});
 
-// const eraserBtn = document.getElementById('eraser')
-// eraserBtn.addEventListener('click', function () {
-//     currentMode = 'eraser'
-// });
+const eraserBtn = document.getElementById('eraser')
+eraserBtn.addEventListener('click', function () {
+    currentMode = 'eraser'
+});
 
 const resizeBtn = document.getElementById('resize')
 resizeBtn.addEventListener('click', function() {
+    let prevSize = size;
     size = prompt(`How many boxes would you like in each row? Previously you had ${size} boxes.`)
+    size = Math.abs(size)
+    if (size > 100) {
+        size = 100;
+        alert('Size has to be under 100, so it was set to 100.')
+    } else if (size == 0 || size instanceof String || size === null) {
+        size = prevSize
+        alert('It cannot be 0 or not a number, so it was set to your previous size.')
+    }
     resetGrid(size)
 });
 
