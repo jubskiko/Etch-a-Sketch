@@ -57,7 +57,7 @@ eraserBtn.addEventListener('click', function () {
 });
 
 const resizeBtn = document.getElementById('resize')
-resizeBtn.addEventListener('click', function() {
+resizeBtn.addEventListener('click', function () {
     let prevSize = size;
     size = prompt(`How many boxes would you like in each row? Previously you had ${size} boxes.`)
     size = Math.abs(size)
@@ -72,7 +72,7 @@ resizeBtn.addEventListener('click', function() {
 });
 
 const resetBtn = document.getElementById('reset')
-resetBtn.addEventListener('click', function() {
+resetBtn.addEventListener('click', function () {
     resetGrid(size)
 });
 

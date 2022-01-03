@@ -1,3 +1,12 @@
+@font-face {
+  font-family: stickyNote;
+  src: url('stickyNoteFont.ttf');
+}
+
+html {
+  font-family: 'stickyNote';
+}
+
 body {
     padding: 0;
     margin: 0;
@@ -9,6 +18,7 @@ body {
     font-size: 3rem;
     color: #fff;
   }
+
   .container {
     margin: 0 auto;
     padding: 20px;
@@ -21,15 +31,6 @@ body {
     width: 100%;
   }
   
-  /* .container .buttons button {
-    width: 150px;
-    height: 60px;
-    background: green;
-    border-radius: 25%;
-    font-size: 2rem;
-    color: white;
-  } */
-  
   .container .gridContainer {
     display: grid;
     width: 800px;
@@ -39,12 +40,11 @@ body {
   }
 
   .footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
     align-items: center;
-    background-color: lightblue;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px;
+    font-size: 24px;
   }
